@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Business
 {
-    class Tweet
+    public class Tweet:RawMessage
     {
         private String sender;
         private String message;

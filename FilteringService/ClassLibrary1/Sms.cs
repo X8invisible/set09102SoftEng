@@ -7,22 +7,22 @@ using System.Threading.Tasks;
 namespace Business
 {
     [Serializable]
-    public class Sms
+    public class Sms:RawMessage
     {
-        private int sender;
+        private String sender;
         private String message;
 
         public Sms()
         {
         }
 
-        public Sms(int sender, string message)
+        public Sms(String sender, string message)
         {
             this.Sender = sender;
             this.Message = message;
         }
 
-        public int Sender
+        public String Sender
         {
             get { return sender; }
             set { sender = value; }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Business
 {
-    class Email
+    public class Email:RawMessage
     {
         private String sender;
         private String subject;

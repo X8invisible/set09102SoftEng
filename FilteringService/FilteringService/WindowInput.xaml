@@ -7,8 +7,11 @@
         mc:Ignorable="d"
         Title="Input" Height="450" Width="800">
     <Grid>
-        <TextBox x:Name="txtMessage" HorizontalAlignment="Left" Height="292" Margin="10,117,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="772" TextChanged="TextBox_TextChanged"/>
+        <TextBox x:Name="txtMessage" HorizontalAlignment="Left" Height="266" Margin="10,101,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="772" TextChanged="TextBox_TextChanged"/>
         <TextBox x:Name="txtHeader" HorizontalAlignment="Left" Height="23" Margin="10,42,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="772"/>
+        <Label Content="Header" HorizontalAlignment="Left" Margin="10,11,0,0" VerticalAlignment="Top"/>
+        <Label Content="Body" HorizontalAlignment="Left" Margin="10,70,0,0" VerticalAlignment="Top"/>
+        <Button Content="Submit" HorizontalAlignment="Left" Margin="334,372,0,0" VerticalAlignment="Top" Width="75"/>
 
     </Grid>
 </Window>
