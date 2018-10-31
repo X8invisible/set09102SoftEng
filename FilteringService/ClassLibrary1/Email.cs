@@ -12,6 +12,13 @@ namespace Business
         private String subject;
         private String message;
 
+        public Email(string sender, string subject, string message)
+        {
+            Sender = sender;
+            Subject = subject;
+            Message = message;
+        }
+
         public String Sender
         {
             get { return sender; }
@@ -26,6 +33,12 @@ namespace Business
         {
             get { return Message; }
             set { message = value; }
+        }
+
+        public override string ToString()
+        {
+            string output = "Sender: "+ sender + " Subject: " + subject + " Message: " + message;
+            return output;
         }
     }
 }

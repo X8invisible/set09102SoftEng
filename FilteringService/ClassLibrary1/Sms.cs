@@ -32,5 +32,10 @@ namespace Business
             get { return Message; }
             set { message = value; }
         }
+        public override string ToString()
+        {
+            string output = "Sender: "+ sender + " Message: " + message;
+            return output;
+        }
     }
 }

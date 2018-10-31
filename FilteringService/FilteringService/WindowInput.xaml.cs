@@ -11,6 +11,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Business;
+using Data;
 
 namespace FilteringService
 {
@@ -19,9 +21,27 @@ namespace FilteringService
     /// </summary>
     public partial class WindowInput : Window
     {
+        MessageFactory instance = MessageFactory.Instance;
         public WindowInput()
         {
+            
             InitializeComponent();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            string header = txtHeader.Text;
+            string message = txtMessage.Text;
+            try
+            {
+                RawMessage result = instance.ProcessMessage(header, message);
+                MessageBox.Show(result.ToString());
+            }
+            catch(Exception ep)
+            {
+                MessageBox.Show(ep.Message);
+            }
+           
         }
     }
 }

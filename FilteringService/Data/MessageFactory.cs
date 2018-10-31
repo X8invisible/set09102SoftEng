@@ -34,18 +34,26 @@ namespace Data
                     {
                         int numberIndex = body.IndexOf(' ');
                         string sender = body.Substring(0, numberIndex);
-                        string msg = body.Substring(numberIndex, body.Length);
+                        string msg = body.Substring(numberIndex +1);
                         output = new Sms(sender, msg);
                         break;
                     }
                 case 'E':
                     {
-                        output = new Email();
+                        int senderIndex = body.IndexOf(' ');
+                        string sender = body.Substring(0, senderIndex);
+                        int subjectIndex = body.IndexOf(' ',senderIndex +1);
+                        string subject = body.Substring(senderIndex, subjectIndex - senderIndex);
+                        string msg = body.Substring(subjectIndex+1);
+                        output = new Email(sender,subject,msg);
                         break;
                     }
                 case 'T':
                     {
-                        output = new Tweet();
+                        int numberIndex = body.IndexOf(' ');
+                        string sender = body.Substring(0, numberIndex);
+                        string msg = body.Substring(numberIndex+1);
+                        output = new Tweet(sender,msg);
                         break;
                     }
                 default:
