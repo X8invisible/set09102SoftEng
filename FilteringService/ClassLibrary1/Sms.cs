@@ -9,20 +9,25 @@ namespace Business
     [Serializable]
     public class Sms:RawMessage
     {
-        private String sender;
-        private String message;
+        private int id;
+        private string sender;
+        private string message;
 
         public Sms()
         {
         }
-
-        public Sms(String sender, string message)
+        public Sms(int id, string sender, string message)
         {
+            this.id = id;
             this.Sender = sender;
             this.Message = message;
         }
 
-        public String Sender
+        public int Id
+        {
+            get { return id; }
+        }
+        public string Sender
         {
             get { return sender; }
             set { sender = value; }

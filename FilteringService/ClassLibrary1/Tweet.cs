@@ -8,20 +8,26 @@ namespace Business
 {
     public class Tweet:RawMessage
     {
-        private String sender;
-        private String message;
+        private int id;
+        private string sender;
+        private string message;
 
         public Tweet()
         {
         }
 
-        public Tweet(string sender, string message)
+        public Tweet(int id, string sender, string message)
         {
+            this.id = id;
             this.sender = sender;
             this.message = message;
         }
 
-        public String Sender
+        public int Id
+        {
+            get { return id; }
+        }
+        public string Sender
         {
             get { return sender; }
             set { sender = value; }

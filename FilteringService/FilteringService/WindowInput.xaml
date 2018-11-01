@@ -5,13 +5,21 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FilteringService"
         mc:Ignorable="d"
-        Title="Input" Height="450" Width="800">
+        Title="Input" Height="556.7" Width="557">
     <Grid>
-        <TextBox x:Name="txtMessage" HorizontalAlignment="Left" Height="266" Margin="10,101,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="772"/>
-        <TextBox x:Name="txtHeader" HorizontalAlignment="Left" Height="23" Margin="10,42,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="772"/>
-        <Label Content="Header" HorizontalAlignment="Left" Margin="10,11,0,0" VerticalAlignment="Top"/>
-        <Label Content="Body" HorizontalAlignment="Left" Margin="10,70,0,0" VerticalAlignment="Top"/>
-        <Button Content="Submit" HorizontalAlignment="Left" Margin="334,372,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
+        <TextBox x:Name="txtMessage" Height="266" Margin="8,217,12,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"/>
+        <TextBox x:Name="txtSubject" Height="23" Margin="8,158,12,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" IsEnabled="False"/>
+        <Label Content="Subject" HorizontalAlignment="Left" Margin="8,127,0,0" VerticalAlignment="Top"/>
+        <Label Content="Message" HorizontalAlignment="Left" Margin="8,186,0,0" VerticalAlignment="Top" Height="26"/>
+        <Button Content="Submit" HorizontalAlignment="Left" Margin="8,488,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
+        <TextBox x:Name="txtSender" Height="23" Margin="8,99,12,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"/>
+        <Label Content="Sender" HorizontalAlignment="Left" Margin="10,68,0,0" VerticalAlignment="Top"/>
+        <ComboBox x:Name="comboMsgType" HorizontalAlignment="Left" Margin="8,41,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="comboMsgType_SelectionChanged">
+            <ComboBoxItem Content="SMS" Height="20" Width="110"/>
+            <ComboBoxItem Content="E-mail" Height="20" Width="110"/>
+            <ComboBoxItem Content="Tweet" Height="20" Width="110"/>
+        </ComboBox>
+        <Label Content="Message Type" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
 
     </Grid>
 </Window>

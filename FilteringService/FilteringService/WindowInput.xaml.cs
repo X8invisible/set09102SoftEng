@@ -30,18 +30,55 @@ namespace FilteringService
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            string header = txtHeader.Text;
-            string message = txtMessage.Text;
-            try
+
+            if(comboMsgType.SelectedIndex == -1)
             {
-                RawMessage result = instance.ProcessMessage(header, message);
-                MessageBox.Show(result.ToString());
+                MessageBox.Show("No message type selected!");
             }
-            catch(Exception ep)
+            else
             {
-                MessageBox.Show(ep.Message);
+                switch (comboMsgType.SelectedIndex)
+                {
+                    case '0':
+                        {
+                            try
+                            {
+                                string send = txtSender.Text;
+                                string message = txtMessage.Text;
+                            }
+                            catch (Exception ep)
+                            {
+                                MessageBox.Show(ep.Message);
+                            }
+                            break;
+                        }
+                }
             }
+            //string header = txtHeader.Text;
+            //string message = txtMessage.Text;
+            //try
+            //{
+            //    RawMessage result = instance.ProcessMessage(header, message);
+            //    MessageBox.Show(result.ToString());
+            //}
+            //catch(Exception ep)
+            //{
+            //    MessageBox.Show(ep.Message);
+            //}
            
+        }
+
+        private void comboMsgType_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if(comboMsgType.SelectedIndex == 1)
+            {
+                txtSubject.IsEnabled = true;
+            }
+            else
+            {
+                txtSubject.Text = "";
+                txtSubject.IsEnabled = false;
+            }
         }
     }
 }
