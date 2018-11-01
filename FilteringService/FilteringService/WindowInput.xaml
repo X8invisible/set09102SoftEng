@@ -20,6 +20,7 @@
             <ComboBoxItem Content="Tweet" Height="20" Width="110"/>
         </ComboBox>
         <Label Content="Message Type" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+        <Button Content="Save to file" HorizontalAlignment="Left" Margin="251,488,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click_1"/>
 
     </Grid>
 </Window>

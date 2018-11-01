@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Business
 {
-    [Serializable]
+
     public class Sms:RawMessage
     {
         private int id;
@@ -34,7 +34,7 @@ namespace Business
         }
         public string Message
         {
-            get { return Message; }
+            get { return message; }
             set { message = value; }
         }
         public override string ToString()

@@ -22,6 +22,7 @@ namespace FilteringService
     public partial class WindowInput : Window
     {
         MessageFactory instance = MessageFactory.Instance;
+        DataHolderSingleton holder = DataHolderSingleton.Instance;
         public WindowInput()
         {
             
@@ -39,12 +40,48 @@ namespace FilteringService
             {
                 switch (comboMsgType.SelectedIndex)
                 {
-                    case '0':
+                    case 0 :
                         {
                             try
                             {
                                 string send = txtSender.Text;
                                 string message = txtMessage.Text;
+                                Sms result = new Sms(instance.MessageID, send, message);
+                                holder.AddSms(result);
+                                MessageBox.Show(result.ToString());
+                            }
+                            catch (Exception ep)
+                            {
+                                MessageBox.Show(ep.Message);
+                            }
+                            break;
+                        }
+                    case 1 :
+                        {
+                            try
+                            {
+                                string send = txtSender.Text;
+                                string subj = txtSubject.Text;
+                                string message = txtMessage.Text;
+                                Email result = new Email(instance.MessageID, send, subj, message);
+                                holder.AddEmail(result);
+                                MessageBox.Show(result.ToString());
+                            }
+                            catch (Exception ep)
+                            {
+                                MessageBox.Show(ep.Message);
+                            }
+                            break;
+                        }
+                    case 2:
+                        {
+                            try
+                            {
+                                string send = txtSender.Text;
+                                string message = txtMessage.Text;
+                                Tweet result = new Tweet(instance.MessageID, send, message);
+                                holder.AddTweet(result);
+                                MessageBox.Show(result.ToString());
                             }
                             catch (Exception ep)
                             {
@@ -79,6 +116,11 @@ namespace FilteringService
                 txtSubject.Text = "";
                 txtSubject.IsEnabled = false;
             }
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            holder.SaveData();
         }
     }
 }
