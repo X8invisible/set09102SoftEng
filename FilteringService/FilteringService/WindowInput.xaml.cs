@@ -25,8 +25,8 @@ namespace FilteringService
         DataHolderSingleton holder = DataHolderSingleton.Instance;
         public WindowInput()
         {
-            
             InitializeComponent();
+            holder.readAbbr();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -120,6 +120,7 @@ namespace FilteringService
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
+            holder.ConvertAbbr();
             holder.SaveData();
         }
     }
