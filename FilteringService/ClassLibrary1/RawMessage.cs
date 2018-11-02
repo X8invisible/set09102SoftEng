@@ -8,7 +8,6 @@ namespace Business
 {
     public class RawMessage
     {
-        private String header;
         private String sender;
         private String message;
 
@@ -21,11 +20,6 @@ namespace Business
         //    get { return sender; }
         //    set { sender = value; }
         //}
-        public String Header
-        {
-            get { return header; }
-            set { header = value; }
-        }
         //public string Message
         //{
         //    get { return Message; }

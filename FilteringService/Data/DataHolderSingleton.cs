@@ -17,6 +17,7 @@ namespace Data
         private static List<string> quarantineUrl = new List<string>();
         private static List<Email> emailList = new List<Email>();
         private static List<Tweet> tweetList = new List<Tweet>();
+        private static List<RawMessage> fullList = new List<RawMessage>();
 
 
         private DataHolderSingleton() { }
@@ -89,6 +90,14 @@ namespace Data
         {
             get { return quarantineUrl; }
         }
+        public List<RawMessage> FullList
+        {
+            get
+            {
+                UpdateFullList();
+                return fullList;
+            }
+        }
         public Dictionary<string,string> Abbreviations
         {
             get { return abbr; }
@@ -107,6 +116,13 @@ namespace Data
             tweetList.Add(t);
         }
 
+        public void UpdateFullList()
+        {
+            fullList = new List<RawMessage>(smsList.Count + emailList.Count + tweetList.Count);
+            smsList.ForEach(obj => fullList.Add(obj));
+            emailList.ForEach(obj => fullList.Add(obj));
+            tweetList.ForEach(obj => fullList.Add(obj));
+        }
         public void SaveData()
         {
             var serializer = new JavaScriptSerializer();
@@ -116,6 +132,26 @@ namespace Data
             File.WriteAllText(@"../../../Data/email.json", serializedMail);
             var serializedTweet = serializer.Serialize(tweetList);
             File.WriteAllText(@"../../../Data/tweet.json", serializedTweet);
+
+        }
+        public void ReadData()
+        {
+            JavaScriptSerializer serializer = new JavaScriptSerializer();
+            if (File.Exists(@"../../../Data/sms.json"))
+            {
+                string sms = File.ReadAllText(@"../../../Data/sms.json");
+                smsList = serializer.Deserialize<List<Sms>>(sms);
+            }
+            if (File.Exists(@"../../../Data/email.json"))
+            {
+                string email = File.ReadAllText(@"../../../Data/email.json");
+                emailList = serializer.Deserialize<List<Email>>(email);
+            }
+            if (File.Exists(@"../../../Data/tweet.json"))
+            {
+                string tweet = File.ReadAllText(@"../../../Data/tweet.json");
+                tweetList = serializer.Deserialize<List<Tweet>>(tweet);
+            }
 
         }
     }

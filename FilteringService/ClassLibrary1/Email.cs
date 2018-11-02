@@ -13,6 +13,7 @@ namespace Business
         private string subject;
         private string message;
 
+        public Email() { }
         public Email(int id, string sender, string subject, string message)
         {
             this.id = id;

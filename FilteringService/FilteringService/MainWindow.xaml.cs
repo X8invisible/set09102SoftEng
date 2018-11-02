@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Business;
+using Data;
 
 namespace FilteringService
 {
@@ -20,9 +22,16 @@ namespace FilteringService
     /// </summary>
     public partial class MainWindow : Window
     {
+        private DataHolderSingleton holder = DataHolderSingleton.Instance;
+        private MessageFactory factory = MessageFactory.Instance;
+        private List<RawMessage> fullList = new List<RawMessage>();
+
         public MainWindow()
         {
             InitializeComponent();
+            holder.ReadData();
+            fullList = holder.FullList;
+            gridTexts.ItemsSource = fullList;
         }
 
         private void btnCustom_Click(object sender, RoutedEventArgs e)

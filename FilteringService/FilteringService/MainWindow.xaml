@@ -7,7 +7,13 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <Button x:Name="btnCustom" Content="Input Text" HorizontalAlignment="Center" Margin="10,10,0,0" VerticalAlignment="Center" Width="116" Height="33" Click="btnCustom_Click"/>
+        <Button x:Name="btnCustom" Content="Input Text" HorizontalAlignment="Center" Margin="50,361,645,33" VerticalAlignment="Center" Width="97" Height="25" Click="btnCustom_Click"/>
+        <DataGrid x:Name="gridTexts" HorizontalAlignment="Left" Height="311" Margin="10,10,0,0" VerticalAlignment="Top" Width="772" IsReadOnly="True">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Id" Binding="{Binding Id}" Width="100"/>
+                <DataGridTextColumn Header="Message" Binding="{Binding Message}" Width="*"/>
+            </DataGrid.Columns>
+        </DataGrid>
 
     </Grid>
 </Window>

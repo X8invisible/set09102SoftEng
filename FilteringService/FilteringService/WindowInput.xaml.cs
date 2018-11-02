@@ -21,11 +21,12 @@ namespace FilteringService
     /// </summary>
     public partial class WindowInput : Window
     {
-        MessageFactory instance = MessageFactory.Instance;
-        DataHolderSingleton holder = DataHolderSingleton.Instance;
+        private MessageFactory factory = MessageFactory.Instance;
+        private DataHolderSingleton holder = DataHolderSingleton.Instance;
         public WindowInput()
         {
             InitializeComponent();
+            holder.ReadData();
             holder.readAbbr();
         }
 
@@ -46,7 +47,7 @@ namespace FilteringService
                             {
                                 string send = txtSender.Text;
                                 string message = txtMessage.Text;
-                                Sms result = new Sms(instance.MessageID, send, message);
+                                Sms result = new Sms(factory.MessageID, send, message);
                                 holder.AddSms(result);
                                 MessageBox.Show(result.ToString());
                             }
@@ -63,7 +64,7 @@ namespace FilteringService
                                 string send = txtSender.Text;
                                 string subj = txtSubject.Text;
                                 string message = txtMessage.Text;
-                                Email result = new Email(instance.MessageID, send, subj, message);
+                                Email result = new Email(factory.MessageID, send, subj, message);
                                 holder.AddEmail(result);
                                 MessageBox.Show(result.ToString());
                             }
@@ -79,7 +80,7 @@ namespace FilteringService
                             {
                                 string send = txtSender.Text;
                                 string message = txtMessage.Text;
-                                Tweet result = new Tweet(instance.MessageID, send, message);
+                                Tweet result = new Tweet(factory.MessageID, send, message);
                                 holder.AddTweet(result);
                                 MessageBox.Show(result.ToString());
                             }
