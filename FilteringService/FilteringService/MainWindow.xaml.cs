@@ -41,5 +41,6 @@ namespace FilteringService
             input.Show();
             this.Close();
         }
-    }
+
+	}
 }

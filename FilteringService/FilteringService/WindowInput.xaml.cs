@@ -122,7 +122,15 @@ namespace FilteringService
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             holder.ConvertAbbr();
+			holder.ConvertUrl();
             holder.SaveData();
         }
-    }
+
+		private void btnArrowBack_Click(object sender, RoutedEventArgs e)
+		{
+			MainWindow back = new MainWindow();
+			back.Show();
+			this.Close();
+		}
+	}
 }

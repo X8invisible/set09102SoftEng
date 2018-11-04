@@ -74,6 +74,25 @@ namespace Data
             }
         }
 
+		public void ConvertUrl()
+		{
+			foreach(Email e in emailList)
+			{
+				string[] elements = e.Message.Split(' ');
+				for(int i=0; i < elements.Length; i++)
+				{
+					bool result = Uri.TryCreate(elements[i], UriKind.Absolute, out Uri uriResult)
+					&& (uriResult.Scheme == Uri.UriSchemeHttp || uriResult.Scheme == Uri.UriSchemeHttps);
+					if (result)
+					{
+						quarantineUrl.Add(elements[i]);
+						elements[i] = "\u003C URL Quarantined \u003E";
+					}
+				}
+				e.Message = string.Join(" ", elements);
+			}
+		}
+
         public List<Sms> SmsList
         {
             get { return smsList; }
