@@ -5,13 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FilteringService"
         mc:Ignorable="d"
-        Title="Input" Height="556.7" Width="557">
+        Title="Input" Height="579.7" Width="584">
     <Grid>
         <TextBox x:Name="txtMessage" Height="266" Margin="8,217,12,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"/>
         <TextBox x:Name="txtSubject" Height="23" Margin="8,158,12,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" IsEnabled="False"/>
         <Label Content="Subject" HorizontalAlignment="Left" Margin="8,127,0,0" VerticalAlignment="Top"/>
         <Label Content="Message" HorizontalAlignment="Left" Margin="8,186,0,0" VerticalAlignment="Top" Height="26"/>
-        <Button Content="Submit" HorizontalAlignment="Left" Margin="8,488,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
+        <Button Content="Submit" HorizontalAlignment="Left" Margin="20,0,0,36" Width="75" Click="Button_Click" Height="20" VerticalAlignment="Bottom"/>
         <TextBox x:Name="txtSender" Height="23" Margin="8,99,12,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"/>
         <Label Content="Sender" HorizontalAlignment="Left" Margin="10,68,0,0" VerticalAlignment="Top"/>
         <ComboBox x:Name="comboMsgType" HorizontalAlignment="Left" Margin="8,41,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="comboMsgType_SelectionChanged">
@@ -20,7 +20,7 @@
             <ComboBoxItem Content="Tweet" Height="20" Width="110"/>
         </ComboBox>
         <Label Content="Message Type" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
-        <Button Content="Save to file" HorizontalAlignment="Left" Margin="251,488,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click_1"/>
+        <Button Content="Save to file" Margin="0,0,250,36" Click="Button_Click_1" Height="20" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="75"/>
 
     </Grid>
 </Window>

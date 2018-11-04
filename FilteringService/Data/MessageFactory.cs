@@ -36,21 +36,21 @@ namespace Data
             DataHolderSingleton instance = DataHolderSingleton.Instance;
             if(instance.SmsList.Count != 0)
             {
-                if (instance.SmsList.Last().Id > messageID)
+                if (instance.SmsList.Last().Id >= messageID)
                 {
                     messageID = instance.SmsList.Last().Id +1;
                 }
             }
             if (instance.EmailList.Count != 0)
             {
-                if (instance.EmailList.Last().Id > messageID)
+                if (instance.EmailList.Last().Id >= messageID)
                 {
                     messageID = instance.EmailList.Last().Id + 1;
                 }
             }
             if (instance.TweetList.Count != 0)
             {
-                if (instance.TweetList.Last().Id > messageID)
+                if (instance.TweetList.Last().Id >= messageID)
                 {
                     messageID = instance.TweetList.Last().Id + 1;
                 }

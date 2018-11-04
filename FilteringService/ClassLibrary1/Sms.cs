@@ -9,7 +9,6 @@ namespace Business
 
     public class Sms:RawMessage
     {
-        private int id;
         private string sender;
         private string message;
 
@@ -18,15 +17,11 @@ namespace Business
         }
         public Sms(int id, string sender, string message)
         {
-            this.id = id;
-            this.Sender = sender;
-            this.Message = message;
+            Id = id;
+            Sender = sender;
+            Message = message;
         }
 
-        public int Id
-        {
-            get { return id; }
-        }
         public string Sender
         {
             get { return sender; }

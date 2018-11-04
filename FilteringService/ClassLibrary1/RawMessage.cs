@@ -8,22 +8,13 @@ namespace Business
 {
     public class RawMessage
     {
-        private String sender;
-        private String message;
+        private int id;
 
-        public RawMessage()
+        public RawMessage(){ }
+        public int Id
         {
+            get { return id; }
+            set { id = value; }
         }
-
-        //public String Sender
-        //{
-        //    get { return sender; }
-        //    set { sender = value; }
-        //}
-        //public string Message
-        //{
-        //    get { return Message; }
-        //    set { message = value; }
-        //}
     }
 }

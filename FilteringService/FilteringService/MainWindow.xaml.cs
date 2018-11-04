@@ -30,6 +30,7 @@ namespace FilteringService
         {
             InitializeComponent();
             holder.ReadData();
+            factory.UpdateNumbers();
             fullList = holder.FullList;
             gridTexts.ItemsSource = fullList;
         }

@@ -8,7 +8,6 @@ namespace Business
 {
     public class Email:RawMessage
     {
-        private int id;
         private string sender;
         private string subject;
         private string message;
@@ -16,15 +15,10 @@ namespace Business
         public Email() { }
         public Email(int id, string sender, string subject, string message)
         {
-            this.id = id;
+            Id = id;
             Sender = sender;
             Subject = subject;
             Message = message;
-        }
-
-        public int Id
-        {
-            get { return id; }
         }
         public string Sender
         {
