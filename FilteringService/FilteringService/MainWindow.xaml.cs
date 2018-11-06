@@ -30,6 +30,7 @@ namespace FilteringService
         {
             InitializeComponent();
             holder.ReadData();
+            holder.readAbbr();
             factory.UpdateNumbers();
             fullList = holder.FullList;
             gridTexts.ItemsSource = fullList;
@@ -42,5 +43,11 @@ namespace FilteringService
             this.Close();
         }
 
-	}
+        private void btnMentions_Click(object sender, RoutedEventArgs e)
+        {
+            WindowMention w = new WindowMention();
+            w.Show();
+            this.Close();
+        }
+    }
 }

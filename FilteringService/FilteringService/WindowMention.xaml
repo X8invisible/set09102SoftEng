@@ -1,0 +1,35 @@
+﻿<Window x:Class="FilteringService.WindowMention"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FilteringService"
+        mc:Ignorable="d"
+        Title="Mentions and Trending Lists" Height="466.321" Width="570.725">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <DataGrid x:Name="dgridMention" Margin="10,10,10,36" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Hashtag" Binding="{Binding Key}" Width="*"/>
+                <DataGridTextColumn Header="Number" Binding="{Binding Value}" Width="100"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <DataGrid x:Name="dgridTrend" Margin="10,10,10,36" Grid.Column="1" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Hashtag" Binding="{Binding Key}" Width="*"/>
+                <DataGridTextColumn Header="Number" Binding="{Binding Value}" Width="100"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button x:Name="btnArrowBack" Margin="10,404,0,0" Click="btnArrowBack_Click" RenderTransformOrigin="0.69,2.92" Height="21" VerticalAlignment="Top" HorizontalAlignment="Left" Width="27">
+            <Button.Template>
+                <ControlTemplate>
+                    <Image Source="Resources/backArrow.png"/>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+
+    </Grid>
+</Window>

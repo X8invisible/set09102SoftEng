@@ -10,7 +10,7 @@ namespace Data
     public class MessageFactory
     {
         private static MessageFactory instance;
-        private static int messageID = 1;
+        private static int messageID = 100000000;
 
 
         private MessageFactory() { }

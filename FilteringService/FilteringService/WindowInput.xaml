@@ -5,29 +5,56 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FilteringService"
         mc:Ignorable="d"
-        Title="Input" Height="579.7" Width="584">
+        Title="Input" Height="691.56" Width="679.115">
     <Grid>
-        <TextBox x:Name="txtMessage" Height="266" Margin="8,217,12,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"/>
+        <TextBox x:Name="txtMessage" Margin="10,276,10,81" TextWrapping="Wrap" Text=""/>
         <TextBox x:Name="txtSubject" Height="23" Margin="8,158,12,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" IsEnabled="False"/>
         <Label Content="Subject" HorizontalAlignment="Left" Margin="8,127,0,0" VerticalAlignment="Top"/>
-        <Label Content="Message" HorizontalAlignment="Left" Margin="8,186,0,0" VerticalAlignment="Top" Height="26"/>
-        <Button Content="Submit" HorizontalAlignment="Left" Margin="310,0,0,36" Width="75" Click="Button_Click" Height="20" VerticalAlignment="Bottom"/>
+        <Label Content="Message" HorizontalAlignment="Left" Margin="10,245,0,0" VerticalAlignment="Top" Height="26"/>
+        <Button x:Name="btnSubmit" Content="Submit" HorizontalAlignment="Center" Margin="281,0,278,27" Width="112" Height="30" VerticalAlignment="Bottom" Click="btnSubmit_Click"/>
         <TextBox x:Name="txtSender" Height="23" Margin="8,99,12,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"/>
         <Label Content="Sender" HorizontalAlignment="Left" Margin="10,68,0,0" VerticalAlignment="Top"/>
-        <ComboBox x:Name="comboMsgType" HorizontalAlignment="Left" Margin="8,41,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="comboMsgType_SelectionChanged">
-            <ComboBoxItem Content="SMS" Height="20" Width="110"/>
-            <ComboBoxItem Content="E-mail" Height="20" Width="110"/>
-            <ComboBoxItem Content="Tweet" Height="20" Width="110"/>
+        <ComboBox x:Name="comboMsgType" HorizontalAlignment="Left" Margin="70,41,0,0" VerticalAlignment="Top" Width="138" SelectionChanged="comboMsgType_SelectionChanged">
+            <ComboBoxItem Content="SMS" Height="20"/>
+            <ComboBoxItem Content="E-mail" Height="20"/>
+            <ComboBoxItem Content="Tweet" Height="20"/>
         </ComboBox>
-        <Label Content="Message Type" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
-        <Button Content="Save to file" Margin="0,0,12,36" Click="Button_Click_1" Height="20" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="75"/>
-        <Button x:Name="btnArrowBack" Margin="10,493,537,31" Click="btnArrowBack_Click" RenderTransformOrigin="0.69,2.92">
+        <Label Content="Message Type" HorizontalAlignment="Left" Margin="70,10,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="btnArrowBack" Margin="10,21,0,0" Click="btnArrowBack_Click" RenderTransformOrigin="0.69,2.92" Height="47" VerticalAlignment="Top" HorizontalAlignment="Left" Width="47">
             <Button.Template>
                 <ControlTemplate>
                     <Image Source="Resources/backArrow.png"/>
                 </ControlTemplate>
             </Button.Template>
         </Button>
+        <Grid x:Name="gridEmailType" Margin="213,10,247,0" Height="65" VerticalAlignment="Top">
+            <ComboBox x:Name="comboEmailType" Margin="9,31,10,0" VerticalAlignment="Top" SelectionChanged="comboEmailType_SelectionChanged">
+                <ComboBoxItem Content="Standard E-mail" Height="20"/>
+                <ComboBoxItem Content="Significant Incident Report" Height="20"/>
+            </ComboBox>
+            <Label Content="E-mail Type" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top"/>
+
+        </Grid>
+        <TextBox x:Name="txtSortCode" Height="23" Margin="10,217,10,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" IsEnabled="False"/>
+        <Label Content="Sort Code" HorizontalAlignment="Left" Margin="10,186,0,0" VerticalAlignment="Top"/>
+        <Grid x:Name="gridIncident" Margin="0,10,0,0" Height="65" VerticalAlignment="Top" HorizontalAlignment="Right" Width="247">
+            <ComboBox x:Name="comboIncident" Margin="9,31,10,0" VerticalAlignment="Top">
+                <ComboBoxItem Content="Theft" Height="20"/>
+                <ComboBoxItem Content="Staff Attack" Height="20"/>
+                <ComboBoxItem Content="ATM Theft" Height="20"/>
+                <ComboBoxItem Content="Raid" Height="20"/>
+                <ComboBoxItem Content="Customer Attack" Height="20" />
+                <ComboBoxItem Content="Staff Abuse" Height="20"/>
+                <ComboBoxItem Content="Bomb Threat" Height="20"/>
+                <ComboBoxItem Content="Terrorism" Height="20"/>
+                <ComboBoxItem Content="Suspicious Incident" Height="20"/>
+                <ComboBoxItem Content="Intelligence" Height="20"/>
+                <ComboBoxItem Content="Cash Loss" Height="20"/>
+
+            </ComboBox>
+            <Label Content="Nature Of Incident" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top"/>
+
+        </Grid>
 
     </Grid>
 </Window>
