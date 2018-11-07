@@ -57,11 +57,11 @@ namespace Data
         {
             foreach(Sms s in smsList)
             {
-                string[] elements = s.Message.Split(' ');
-                for(int i=0; i< elements.Length; i++)
+                string[] elements = s.RawMessage.Split(new Char[] { ',', ' ', '.', '?', '!', ';' }, StringSplitOptions.RemoveEmptyEntries);
+                for (int i=0; i< elements.Length; i++)
                 {
-                    if (abbr.ContainsKey(elements[i])){
-                        elements[i] += (" <"+ abbr[elements[i]]+">");
+                    if (abbr.ContainsKey(elements[i].ToUpper())){
+                        elements[i] += (" \u003C" + abbr[elements[i].ToUpper()]+ "\u003E");
                     }
                 }
                 s.Message = string.Join(" ", elements);
@@ -69,12 +69,12 @@ namespace Data
 
             foreach (Tweet t in tweetList)
             {
-                string[] elements = t.Message.Split(' ');
+                string[] elements = t.RawMessage.Split(new Char[] { ',', ' ', '.', '?', '!', ';' }, StringSplitOptions.RemoveEmptyEntries);
                 for (int i = 0; i < elements.Length; i++)
                 {
-                    if (abbr.ContainsKey(elements[i]))
+                    if (abbr.ContainsKey(elements[i].ToUpper()))
                     {
-                        elements[i] += (" \u003C" + abbr[elements[i]] + "\u003E");
+                        elements[i] += (" \u003C" + abbr[elements[i].ToUpper()] + "\u003E");
                     }
                 }
                 t.Message = string.Join(" ", elements);
@@ -85,14 +85,14 @@ namespace Data
 		{
 			foreach(Email e in emailList)
 			{
-				string[] elements = e.Message.Split(' ');
-				for(int i=0; i < elements.Length; i++)
+				string[] elements = e.RawMessage.Split(new Char[] { ',', ' ', '.', '?', '!', ';' }, StringSplitOptions.RemoveEmptyEntries);
+                for (int i=0; i < elements.Length; i++)
 				{
                     Regex rule = new Regex(@"(http|https)://.*$");
 					if (rule.IsMatch(elements[i]))
 					{
 						quarantineUrl.Add(elements[i]);
-						elements[i] = "\u003C URL Quarantined \u003E";
+						elements[i] = " \u003C URL Quarantined \u003E";
 					}
 				}
 				e.Message = string.Join(" ", elements);
@@ -208,8 +208,7 @@ namespace Data
             File.WriteAllText(@"../../../Data/email.json", serializedMail);
             var serializedTweet = serializer.Serialize(tweetList);
             File.WriteAllText(@"../../../Data/tweet.json", serializedTweet);
-            var serializedUrl = serializer.Serialize(quarantineUrl);
-            File.WriteAllText(@"../../../Data/quarantine.json", serializedUrl);
+           
 
         }
         public void ReadData()
@@ -229,11 +228,6 @@ namespace Data
             {
                 string tweet = File.ReadAllText(@"../../../Data/tweet.json");
                 tweetList = serializer.Deserialize<List<Tweet>>(tweet);
-            }
-            if (File.Exists(@"../../../Data/quarantine.json"))
-            {
-                string url = File.ReadAllText(@"../../../Data/quarantine.json");
-                quarantineUrl = serializer.Deserialize<List<string>>(url);
             }
 
         }

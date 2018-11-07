@@ -51,6 +51,7 @@ namespace FilteringService
                             }
                             catch (Exception ep)
                             {
+                                factory.IDGoBack();
                                 MessageBox.Show(ep.Message);
                             }
                             break;
@@ -76,6 +77,7 @@ namespace FilteringService
                                             }
                                             catch (Exception ep)
                                             {
+                                                factory.IDGoBack();
                                                 MessageBox.Show(ep.Message);
                                             }
                                             break;
@@ -107,6 +109,7 @@ namespace FilteringService
                                                 }
                                                 catch (Exception ep)
                                                 {
+                                                    factory.IDGoBack();
                                                     MessageBox.Show(ep.Message);
                                                 }
                                             }
@@ -136,6 +139,7 @@ namespace FilteringService
                             }
                             catch (Exception ep)
                             {
+                                factory.IDGoBack();
                                 MessageBox.Show(ep.Message);
                             }
                             break;

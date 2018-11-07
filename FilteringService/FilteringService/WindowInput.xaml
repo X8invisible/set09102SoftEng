@@ -11,7 +11,7 @@
         <TextBox x:Name="txtSubject" Height="23" Margin="8,158,12,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" IsEnabled="False"/>
         <Label Content="Subject" HorizontalAlignment="Left" Margin="8,127,0,0" VerticalAlignment="Top"/>
         <Label Content="Message" HorizontalAlignment="Left" Margin="10,245,0,0" VerticalAlignment="Top" Height="26"/>
-        <Button x:Name="btnSubmit" Content="Submit" HorizontalAlignment="Center" Margin="281,0,278,27" Width="112" Height="30" VerticalAlignment="Bottom" Click="btnSubmit_Click"/>
+        <Button x:Name="btnSubmit" Content="Submit" HorizontalAlignment="Left" Margin="281,0,0,27" Width="112" Height="30" VerticalAlignment="Bottom" Click="btnSubmit_Click"/>
         <TextBox x:Name="txtSender" Height="23" Margin="8,99,12,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"/>
         <Label Content="Sender" HorizontalAlignment="Left" Margin="10,68,0,0" VerticalAlignment="Top"/>
         <ComboBox x:Name="comboMsgType" HorizontalAlignment="Left" Margin="70,41,0,0" VerticalAlignment="Top" Width="138" SelectionChanged="comboMsgType_SelectionChanged">
@@ -27,7 +27,7 @@
                 </ControlTemplate>
             </Button.Template>
         </Button>
-        <Grid x:Name="gridEmailType" Margin="213,10,247,0" Height="65" VerticalAlignment="Top">
+        <Grid x:Name="gridEmailType" Margin="213,10,247,0" Height="65" VerticalAlignment="Top" Visibility="Hidden">
             <ComboBox x:Name="comboEmailType" Margin="9,31,10,0" VerticalAlignment="Top" SelectionChanged="comboEmailType_SelectionChanged">
                 <ComboBoxItem Content="Standard E-mail" Height="20"/>
                 <ComboBoxItem Content="Significant Incident Report" Height="20"/>
@@ -37,7 +37,7 @@
         </Grid>
         <TextBox x:Name="txtSortCode" Height="23" Margin="10,217,10,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" IsEnabled="False"/>
         <Label Content="Sort Code" HorizontalAlignment="Left" Margin="10,186,0,0" VerticalAlignment="Top"/>
-        <Grid x:Name="gridIncident" Margin="0,10,0,0" Height="65" VerticalAlignment="Top" HorizontalAlignment="Right" Width="247">
+        <Grid x:Name="gridIncident" Margin="0,10,0,0" Height="65" VerticalAlignment="Top" HorizontalAlignment="Right" Width="247" Visibility="Hidden">
             <ComboBox x:Name="comboIncident" Margin="9,31,10,0" VerticalAlignment="Top">
                 <ComboBoxItem Content="Theft" Height="20"/>
                 <ComboBoxItem Content="Staff Attack" Height="20"/>

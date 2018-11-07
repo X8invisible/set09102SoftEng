@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,26 +14,38 @@ namespace Business
         private string sortCode;
         private string incident;
         private string subject;
+        private string rawMessage;
         private string message;
 
         public Email() { }
-        public Email(int id, string sender, string type, string subject, string message)
+        public Email(int id, string sender, string type, string subject, string rawMessage)
         {
             Id = id;
             Sender = sender;
             Type = type;
             Subject = subject;
-            Message = message;
+            RawMessage = rawMessage;
         }
-        public Email(int id, string sender, string type, string subject, string message, string sortCode, string incident) : this(id, sender, type, subject, message)
+        public Email(int id, string sender, string type, string subject, string rawMessage, string sortCode, string incident) : this(id, sender, type, subject, rawMessage)
         {
             SortCode = sortCode;
             Incident = incident;
         }
+        public override string FullId
+        {
+            get { return ("E" + Id.ToString()); }
+        }
         public string Sender
         {
             get { return sender; }
-            set { sender = value; }
+            set
+            {
+                if((new EmailAddressAttribute().IsValid(value)))
+                {
+                    throw new ArgumentException("Invalid e-mail address!");
+                }
+                sender = value;
+            }
         }
         public string Type
         {
@@ -42,7 +55,13 @@ namespace Business
         public string SortCode
         {
             get { return sortCode; }
-            set { sortCode = value; }
+            set
+            {
+                if(value !=null)
+                    if (value.Length != 8)
+                        throw new ArgumentException("Sort code is invalid");
+                sortCode = value;
+            }
         }
         public string Incident
         {
@@ -52,7 +71,22 @@ namespace Business
         public string Subject
         {
             get { return subject; }
-            set { subject = value; }
+            set
+            {
+                if (value.Length > 20)
+                    throw new ArgumentException("Subject must be less than 20 characters!");
+                subject = value;
+            }
+        }
+        public string RawMessage
+        {
+            get { return rawMessage; }
+            set
+            {
+                if (value.Length > 1028)
+                    throw new ArgumentException("Message must be less than 1028 characters!");
+                rawMessage = value;
+            }
         }
         public string Message
         {

@@ -13,8 +13,8 @@
         </Grid.ColumnDefinitions>
         <DataGrid x:Name="dgridMention" Margin="10,10,10,36" AutoGenerateColumns="False">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Hashtag" Binding="{Binding Key}" Width="*"/>
-                <DataGridTextColumn Header="Number" Binding="{Binding Value}" Width="100"/>
+                <DataGridTextColumn Header="Mention" Binding="{Binding Key}" Width="*"/>
+                <DataGridTextColumn Header="Message ID" Binding="{Binding Value}" Width="100"/>
             </DataGrid.Columns>
         </DataGrid>
         <DataGrid x:Name="dgridTrend" Margin="10,10,10,36" Grid.Column="1" AutoGenerateColumns="False">

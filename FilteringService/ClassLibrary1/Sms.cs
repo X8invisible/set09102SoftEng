@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace Business
@@ -10,22 +11,41 @@ namespace Business
     public class Sms:RawMessage
     {
         private string sender;
+        private string rawMessage;
         private string message;
 
         public Sms()
         {
         }
-        public Sms(int id, string sender, string message)
+        public Sms(int id, string sender, string rawMessage)
         {
             Id = id;
             Sender = sender;
-            Message = message;
+            RawMessage = rawMessage;
         }
-
+        public override string FullId
+        {
+            get { return ("S" + Id.ToString()); }
+        }
         public string Sender
         {
             get { return sender; }
-            set { sender = value; }
+            set
+            {
+                if (!Regex.IsMatch(value, @"^(\+?\d{3,20})$"))
+                    throw new ArgumentException("Invalid phone number!");
+                sender = value;
+            }
+        }
+        public string RawMessage
+        {
+            get { return rawMessage; }
+            set
+            {
+                if (value.Length > 140)
+                    throw new ArgumentException("Message must be less than 140 characters!");
+                rawMessage = value;
+            }
         }
         public string Message
         {

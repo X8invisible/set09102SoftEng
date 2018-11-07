@@ -30,6 +30,10 @@ namespace Data
         {
             get { return messageID++; }
         }
+        public void IDGoBack()
+        {
+            messageID--;
+        }
 
         public void UpdateNumbers()
         {
