@@ -13,15 +13,14 @@ namespace Data
     public class DataHolderSingleton
     {
         private static DataHolderSingleton instance;
-        private static Dictionary<string, string> abbr;
-        private static List<Sms> smsList = new List<Sms>();
-        private static List<string> quarantineUrl = new List<string>();
-        private static List<Email> emailList = new List<Email>();
-        private static List<Tweet> tweetList = new List<Tweet>();
-        private static List<RawMessage> fullList = new List<RawMessage>();
-        private static Dictionary<string, string> sirList;
-        private static Dictionary<string, int> trendingList;
-
+        private List<Sms> smsList = new List<Sms>();
+        private List<string> quarantineUrl = new List<string>();
+        private List<Email> emailList = new List<Email>();
+        private List<Tweet> tweetList = new List<Tweet>();
+        private List<RawMessage> fullList = new List<RawMessage>();
+        private Dictionary<string, string> sirList;
+        private Dictionary<string, int> trendingList;
+        private Dictionary<string, string> abbr;
 
         private DataHolderSingleton() { }
 
