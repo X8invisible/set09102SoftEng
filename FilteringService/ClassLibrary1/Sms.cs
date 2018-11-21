@@ -32,7 +32,7 @@ namespace Business
             get { return sender; }
             set
             {
-                if (!Regex.IsMatch(value, @"^(\+?\d{3,20})$"))
+                if (!Regex.IsMatch(value, @"^((\+|[0][0])\d{3,20})$"))
                     throw new ArgumentException("Invalid phone number!");
                 sender = value;
             }

@@ -49,5 +49,12 @@ namespace FilteringService
             w.Show();
             this.Close();
         }
+
+        private void BtnQuarantine_Click(object sender, RoutedEventArgs e)
+        {
+            WindowQ w = new WindowQ();
+            w.Show();
+            this.Close();
+        }
     }
 }

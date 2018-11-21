@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -14,12 +15,12 @@ namespace Data
     {
         private static DataHolderSingleton instance;
         private List<Sms> smsList = new List<Sms>();
-        private List<string> quarantineUrl = new List<string>();
+        private List<Tuple<string,string>> quarantineUrl;
         private List<Email> emailList = new List<Email>();
         private List<Tweet> tweetList = new List<Tweet>();
         private List<RawMessage> fullList = new List<RawMessage>();
-        private Dictionary<string, string> sirList;
         private Dictionary<string, int> trendingList;
+        private Dictionary<string, int> mentionList;
         private Dictionary<string, string> abbr;
 
         private DataHolderSingleton() { }
@@ -43,8 +44,8 @@ namespace Data
                 {
                     while (!reader.EndOfStream)
                     {
-                        var line = reader.ReadLine();
-                        var values = line.Split(',');
+                        string line = reader.ReadLine();
+                        var values = line.Split(new[] { ',' }, 2);
 
                         abbr.Add(values[0], values[1]);
                     }
@@ -56,11 +57,12 @@ namespace Data
         {
             foreach(Sms s in smsList)
             {
-                string[] elements = s.RawMessage.Split(new Char[] { ',', ' ', '.', '?', '!', ';' }, StringSplitOptions.RemoveEmptyEntries);
+                string[] elements = s.RawMessage.Split(new Char[] { ',', ' ', '.', ';' }, StringSplitOptions.RemoveEmptyEntries);
                 for (int i=0; i< elements.Length; i++)
                 {
+                    Trace.WriteLine(elements[i]);
                     if (abbr.ContainsKey(elements[i].ToUpper())){
-                        elements[i] += (" \u003C" + abbr[elements[i].ToUpper()]+ "\u003E");
+                        elements[i] += $" \u003C {abbr[elements[i].ToUpper()]} \u003E";
                     }
                 }
                 s.Message = string.Join(" ", elements);
@@ -68,12 +70,12 @@ namespace Data
 
             foreach (Tweet t in tweetList)
             {
-                string[] elements = t.RawMessage.Split(new Char[] { ',', ' ', '.', '?', '!', ';' }, StringSplitOptions.RemoveEmptyEntries);
+                string[] elements = t.RawMessage.Split(new Char[] { ',', ' ', '.', ';' }, StringSplitOptions.RemoveEmptyEntries);
                 for (int i = 0; i < elements.Length; i++)
                 {
                     if (abbr.ContainsKey(elements[i].ToUpper()))
                     {
-                        elements[i] += (" \u003C" + abbr[elements[i].ToUpper()] + "\u003E");
+                        elements[i] += $" \u003C {abbr[elements[i].ToUpper()]} \u003E";
                     }
                 }
                 t.Message = string.Join(" ", elements);
@@ -82,15 +84,17 @@ namespace Data
 
 		public void ConvertUrl()
 		{
+            quarantineUrl = new List<Tuple<string, string>>();
 			foreach(Email e in emailList)
 			{
-				string[] elements = e.RawMessage.Split(new Char[] { ',', ' ', '.', '?', '!', ';' }, StringSplitOptions.RemoveEmptyEntries);
+				string[] elements = e.RawMessage.Split(new Char[] { ',', ' ', '?', '!', ';' }, StringSplitOptions.RemoveEmptyEntries);
                 for (int i=0; i < elements.Length; i++)
 				{
                     Regex rule = new Regex(@"(http|https)://.*$");
 					if (rule.IsMatch(elements[i]))
 					{
-						quarantineUrl.Add(elements[i]);
+                        Tuple<string, string> tp = new Tuple<string, string>(e.FullId, elements[i]);
+                        quarantineUrl.Add(tp);
 						elements[i] = " \u003C URL Quarantined \u003E";
 					}
 				}
@@ -110,9 +114,13 @@ namespace Data
         {
             get { return tweetList; }
         }
-        public List<string> QuarantineUrl
+        public List<Tuple<string, string>> QuarantineUrl
         {
-            get { return quarantineUrl; }
+            get
+            {
+                ConvertUrl();
+                return quarantineUrl;
+            }
         }
         public Dictionary<string,int> TrendList
         {
@@ -120,6 +128,14 @@ namespace Data
             {
                 UpdateTrendList();
                 return trendingList;
+            }
+        }
+        public Dictionary<string, int> MentionList
+        {
+            get
+            {
+                UpdateMentionList();
+                return mentionList;
             }
         }
         public List<RawMessage> FullList
@@ -134,14 +150,6 @@ namespace Data
         {
             get { return abbr; }
         }
-        public Dictionary<string, string> SirList
-        {
-            get
-            {
-                UpdateSirList();
-                return sirList;
-            }
-        }
         public void AddSms(Sms s)
         {
             smsList.Add(s);
@@ -153,20 +161,6 @@ namespace Data
         public void AddTweet(Tweet t)
         {
             tweetList.Add(t);
-        }
-
-        public void UpdateSirList()
-        {
-            sirList = new Dictionary<string, string>();
-            foreach(Email e in emailList)
-            {
-                if(e.Type == "Significant Incident Report")
-                {
-                    string actualValue;
-                    if(sirList.TryGetValue(e.SortCode, out actualValue) && actualValue.Equals(e.Incident))
-                        sirList.Add(e.SortCode, e.Incident);
-                }
-            }
         }
         public void UpdateTrendList()
         {
@@ -186,6 +180,29 @@ namespace Data
                         else
                         {
                             trendingList.Add(elements[i], 1);
+                        }
+                    }
+                }
+            }
+        }
+        public void UpdateMentionList()
+        {
+            mentionList = new Dictionary<string, int>();
+            foreach (Tweet t in tweetList)
+            {
+                string[] elements = t.Message.Split(new Char[] { ',', ' ', '.', '?', '!', ';' }, StringSplitOptions.RemoveEmptyEntries);
+                for (int i = 0; i < elements.Length; i++)
+                {
+                    if (elements[i][0] == '@')
+                    {
+
+                        if (mentionList.ContainsKey(elements[i]))
+                        {
+                            mentionList[elements[i]]++;
+                        }
+                        else
+                        {
+                            mentionList.Add(elements[i], 1);
                         }
                     }
                 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace Business
@@ -40,7 +41,7 @@ namespace Business
             get { return sender; }
             set
             {
-                if((new EmailAddressAttribute().IsValid(value)))
+                if(!(new EmailAddressAttribute().IsValid(value)))
                 {
                     throw new ArgumentException("Invalid e-mail address!");
                 }
@@ -58,7 +59,7 @@ namespace Business
             set
             {
                 if(value !=null)
-                    if (value.Length != 8)
+                    if (!Regex.IsMatch(value, @"^\d\d-\d\d-\d\d$"))
                         throw new ArgumentException("Sort code is invalid");
                 sortCode = value;
             }

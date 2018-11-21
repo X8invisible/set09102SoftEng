@@ -61,6 +61,9 @@
     <Compile Include="WindowMention.xaml.cs">
       <DependentUpon>WindowMention.xaml</DependentUpon>
     </Compile>
+    <Compile Include="WindowQ.xaml.cs">
+      <DependentUpon>WindowQ.xaml</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -78,6 +81,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="WindowMention.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WindowQ.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

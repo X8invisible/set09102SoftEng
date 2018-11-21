@@ -5,25 +5,25 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FilteringService"
         mc:Ignorable="d"
-        Title="Mentions and Trending Lists" Height="466.321" Width="570.725">
+        Title="Mentions and Trending Lists" Height="480" Width="570">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <DataGrid x:Name="dgridMention" Margin="10,10,10,36" AutoGenerateColumns="False">
+        <DataGrid x:Name="dgridMention" Margin="10,10,10,47" AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Mention" Binding="{Binding Key}" Width="*"/>
                 <DataGridTextColumn Header="Message ID" Binding="{Binding Value}" Width="100"/>
             </DataGrid.Columns>
         </DataGrid>
-        <DataGrid x:Name="dgridTrend" Margin="10,10,10,36" Grid.Column="1" AutoGenerateColumns="False">
+        <DataGrid x:Name="dgridTrend" Margin="10,10,10,47" Grid.Column="1" AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Hashtag" Binding="{Binding Key}" Width="*"/>
                 <DataGridTextColumn Header="Number" Binding="{Binding Value}" Width="100"/>
             </DataGrid.Columns>
         </DataGrid>
-        <Button x:Name="btnArrowBack" Margin="10,404,0,0" Click="btnArrowBack_Click" RenderTransformOrigin="0.69,2.92" Height="21" VerticalAlignment="Top" HorizontalAlignment="Left" Width="27">
+        <Button x:Name="btnArrowBack" Margin="10,0,0,10" Click="btnArrowBack_Click" RenderTransformOrigin="0.69,2.92" HorizontalAlignment="Left" Width="36" Height="32" VerticalAlignment="Bottom">
             <Button.Template>
                 <ControlTemplate>
                     <Image Source="Resources/backArrow.png"/>

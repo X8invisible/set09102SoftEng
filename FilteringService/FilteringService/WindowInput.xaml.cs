@@ -28,6 +28,17 @@ namespace FilteringService
         {
             InitializeComponent();
         }
+        private void ClearInput()
+        {
+            txtSender.Text = "";
+            txtSubject.Text = "";
+            txtSortCode.Text = "";
+            txtMessage.Text = "";
+            comboEmailType.SelectedIndex = -1;
+            comboIncident.SelectedIndex = -1;
+            comboMsgType.SelectedIndex = -1;
+            MessageBox.Show("Message saved successfully");
+        }
 
         private void btnSubmit_Click(object sender, RoutedEventArgs e)
         {
@@ -48,6 +59,7 @@ namespace FilteringService
                                 string message = txtMessage.Text;
                                 Sms result = new Sms(factory.MessageID, send, message);
                                 holder.AddSms(result);
+                                ClearInput();
                             }
                             catch (Exception ep)
                             {
@@ -73,7 +85,7 @@ namespace FilteringService
                                                 string type = item.Content.ToString();
                                                 Email result = new Email(factory.MessageID, send, type, subj, message);
                                                 holder.AddEmail(result);
-                                                MessageBox.Show(result.ToString());
+                                                ClearInput();
                                             }
                                             catch (Exception ep)
                                             {
@@ -91,13 +103,13 @@ namespace FilteringService
                                                     string send = txtSender.Text;
                                                     string subj = txtSubject.Text;
                                                     string sort = txtSortCode.Text;
-                                                    if (Regex.IsMatch(txtSortCode.Text, @"$1-$2-$3"))
-                                                    {
-                                                        sort = txtSortCode.Text;
-                                                    }
-                                                    else
+                                                    if (Regex.IsMatch(sort, @"^\d{6}$"))
                                                     {
                                                         sort = Regex.Replace(sort, @"^(..)(..)(..)$", "$1-$2-$3");
+                                                    }
+                                                    if(!Regex.IsMatch(subj, @"^SIR (0?[1-9]|1\d|2\d|3[01])\/(0?[1-9]|1[0-2])\/\d{2}$"))
+                                                    {
+                                                        throw new Exception("Subject must be of form 'SIR dd/mm/yy'");
                                                     }
                                                     string message = txtMessage.Text;
                                                     ComboBoxItem item = comboEmailType.Items[comboEmailType.SelectedIndex] as ComboBoxItem;
@@ -106,6 +118,7 @@ namespace FilteringService
                                                     string incident = item.Content.ToString();
                                                     Email result = new Email(factory.MessageID, send, type, subj, message, sort, incident);
                                                     holder.AddEmail(result);
+                                                    ClearInput();
                                                 }
                                                 catch (Exception ep)
                                                 {
@@ -136,6 +149,7 @@ namespace FilteringService
                                 string message = txtMessage.Text;
                                 Tweet result = new Tweet(factory.MessageID, send, message);
                                 holder.AddTweet(result);
+                                ClearInput();
                             }
                             catch (Exception ep)
                             {

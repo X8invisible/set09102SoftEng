@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Data;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,21 +12,19 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using Data;
 
 namespace FilteringService
 {
     /// <summary>
-    /// Interaction logic for WindowLists.xaml
+    /// Interaction logic for WindowTrending.xaml
     /// </summary>
-    public partial class WindowMention : Window
+    public partial class WindowQ : Window
     {
         private DataHolderSingleton holder = DataHolderSingleton.Instance;
-        public WindowMention()
+        public WindowQ()
         {
             InitializeComponent();
-            dgridTrend.ItemsSource = holder.TrendList;
-            dgridMention.ItemsSource = holder.MentionList;
+            dgridQuarantine.ItemsSource = holder.QuarantineUrl;
         }
 
         private void btnArrowBack_Click(object sender, RoutedEventArgs e)

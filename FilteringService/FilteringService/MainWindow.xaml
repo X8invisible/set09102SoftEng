@@ -7,18 +7,20 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="528.497" Width="927.461">
     <Grid>
-        <Button x:Name="btnCustom" Content="Input Text" HorizontalAlignment="Left" Margin="50,0,0,33" VerticalAlignment="Bottom" Width="97" Height="25" Click="btnCustom_Click"/>
+        <Button x:Name="btnCustom" Content="Input Text" HorizontalAlignment="Left" Margin="90,0,0,33" VerticalAlignment="Bottom" Width="172" Height="25" Click="btnCustom_Click"/>
         <DataGrid x:Name="gridTexts" Height="395" Margin="10,10,10,0" VerticalAlignment="Top" AutoGenerateColumns="False" IsReadOnly="True" HorizontalScrollBarVisibility="Auto">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Id" Binding="{Binding FullId}" Width="100"/>
-                <DataGridTextColumn Header="Subject" Binding="{Binding Subject}" Width="150"/>
+                <DataGridTextColumn Header="Sender" Binding="{Binding Sender}" Width="150"/>
                 <DataGridTextColumn Header="Message" Binding="{Binding Message}" Width="350"/>
+                <DataGridTextColumn Header="Subject" Binding="{Binding Subject}" Width="150"/>
                 <DataGridTextColumn Header="Type" Binding="{Binding Type}" Width="200"/>
                 <DataGridTextColumn Header="Sort Code" Binding="{Binding SortCode}" Width="200"/>
                 <DataGridTextColumn Header="Incident" Binding="{Binding Incident}" Width="200"/>
             </DataGrid.Columns>
         </DataGrid>
-        <Button x:Name="btnMentions" Content="Mentions and Trending Lists" HorizontalAlignment="Left" Margin="195,0,0,33" Width="178" Click="btnMentions_Click" Height="25" VerticalAlignment="Bottom"/>
+        <Button x:Name="btnMentions" Content="Mentions and Trending Lists" Margin="493,0,248,33" Click="btnMentions_Click" Height="25" VerticalAlignment="Bottom"/>
+        <Button x:Name="btnQuarantine" Content="Quarantine List" HorizontalAlignment="Right" Margin="0,0,58,33" Width="133" Height="25" VerticalAlignment="Bottom" Click="BtnQuarantine_Click"/>
 
     </Grid>
 </Window>
