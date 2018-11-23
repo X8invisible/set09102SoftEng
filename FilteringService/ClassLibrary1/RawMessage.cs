@@ -22,5 +22,6 @@ namespace Business
         {
             get;
         }
+        public abstract override string ToString();
     }
 }

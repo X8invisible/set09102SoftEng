@@ -56,5 +56,14 @@ namespace FilteringService
             w.Show();
             this.Close();
         }
+
+        private void GridTexts_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if(gridTexts.SelectedIndex != -1)
+            {
+                var currMsg = gridTexts.SelectedItem as RawMessage;
+                MessageBox.Show(currMsg.ToString());
+            }
+        }
     }
 }

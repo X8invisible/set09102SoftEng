@@ -97,7 +97,16 @@ namespace Business
 
         public override string ToString()
         {
-            string output = "Sender: "+ sender + " Subject: " + subject + " Message: " + message;
+            string output;
+            if (type == "Significant Incident Report")
+            {
+                output = "Sender: " + sender + "\nSubject: " + subject + "\nSort Code: " +sortCode + "\nNature of incident: "+ incident + "\nMessage: " + message;
+            }
+            else
+            {
+                output = "Sender: " + sender + "\nSubject: " + subject + "\nMessage: " + message;
+
+            }
             return output;
         }
     }

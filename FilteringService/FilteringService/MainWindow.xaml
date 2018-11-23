@@ -8,7 +8,7 @@
         Title="MainWindow" Height="528.497" Width="927.461">
     <Grid>
         <Button x:Name="btnCustom" Content="Input Text" HorizontalAlignment="Left" Margin="90,0,0,33" VerticalAlignment="Bottom" Width="172" Height="25" Click="btnCustom_Click"/>
-        <DataGrid x:Name="gridTexts" Height="395" Margin="10,10,10,0" VerticalAlignment="Top" AutoGenerateColumns="False" IsReadOnly="True" HorizontalScrollBarVisibility="Auto">
+        <DataGrid x:Name="gridTexts" Height="395" Margin="10,10,10,0" VerticalAlignment="Top" AutoGenerateColumns="False" IsReadOnly="True" HorizontalScrollBarVisibility="Auto" MouseDoubleClick="GridTexts_MouseDoubleClick">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Id" Binding="{Binding FullId}" Width="100"/>
                 <DataGridTextColumn Header="Sender" Binding="{Binding Sender}" Width="150"/>

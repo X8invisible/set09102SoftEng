@@ -54,7 +54,7 @@ namespace Business
         }
         public override string ToString()
         {
-            string output = "Sender: " + sender + " Message: " + message;
+            string output = "Sender: " + sender + "\nMessage: " + message;
             return output;
         }
     }
